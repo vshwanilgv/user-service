@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+
 public class UserController extends AbstractController {
 
     @Autowired

@@ -2,7 +2,10 @@ package com.example.user_service.contoller;
 
 import com.example.user_service.exception.ApiResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
+@RequestMapping("/api/v1/users")
 public class AbstractController {
     protected <T> ResponseEntity<T> successResponse(T data, HttpStatus status) {
         return new ResponseEntity<>(data, status);
