@@ -27,4 +27,23 @@ public class User {
     private String email;
 
     private String role;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setUserName(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String username) {
+        this.username = username;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }
