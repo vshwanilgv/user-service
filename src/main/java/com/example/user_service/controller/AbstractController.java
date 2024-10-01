@@ -1,4 +1,4 @@
-package com.example.user_service.contoller;
+package com.example.user_service.controller;
 
 import com.example.user_service.exception.ApiResponse;
 import org.springframework.http.HttpStatus;

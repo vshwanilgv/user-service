@@ -1,9 +1,6 @@
 package com.example.user_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -12,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
+@Table(name = "systemuser")
 public class User {
 
     @Id
@@ -35,8 +32,8 @@ public class User {
         this.username = username;
     }
 
-    public void setPassword(String username) {
-        this.username = username;
+    public void setPassword(String password) {
+        this.password = password;
     }
     public void setEmail(String email) {
         this.email = email;
