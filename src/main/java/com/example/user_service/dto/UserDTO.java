@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    private Long id;
-    private String username;
-    private String password;
+    private Long userId;
+    private String cognitoId;
     private String email;
-    private String role;
-
-
+    private boolean isVerified;
 }

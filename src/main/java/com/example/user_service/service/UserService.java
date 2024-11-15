@@ -7,5 +7,6 @@ public interface UserService {
     UserDTO getUserById(Long id);
     UserDTO createUser(UserDTO userDTO);
     UserDTO updateUser(Long id, UserDTO userDTO);
+    UserDTO updateVerificationStatus(String email, boolean isVerified);
     void deleteUser(Long id);
 }

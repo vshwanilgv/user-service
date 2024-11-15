@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService{
             throw new RuntimeException("Failed to fetch users");
         }
     }
-
     @Override
     public UserDTO getUserById(Long id) {
         try {
@@ -50,20 +49,19 @@ public class UserServiceImpl implements UserService{
             throw new RuntimeException("Failed to fetch user with id: ");
         }
     }
-
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         try {
             logger.info("Adding a new user");
+            userDTO.setUserId(null);
             User user = modelMapper.map(userDTO, User.class);
             User addedUser = userRepository.save(user);
             return modelMapper.map(addedUser, UserDTO.class);
         } catch (Exception e) {
-            logger.error("Failed to add user", e);
+            logger.error("Failed to add user. Reason:", e);
             throw new RuntimeException("Failed to add user");
         }
     }
-
     @Override
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         try {
@@ -71,11 +69,28 @@ public class UserServiceImpl implements UserService{
             User existingUser = userRepository.findById(id)
                     .orElseThrow(() -> new UserNotFoundException(id));
             modelMapper.map(userDTO, existingUser);
-            User updatedProduct = userRepository.save(existingUser);
-            return modelMapper.map(updatedProduct, UserDTO.class);
+
+            User updatedUser = userRepository.save(existingUser);
+            return modelMapper.map(updatedUser, UserDTO.class);
         } catch (Exception e) {
             logger.error("Failed to update user with ID: " + id, e);
             throw new RuntimeException("Failed to update user with id: ");
+        }
+    }
+
+    @Override
+    public UserDTO updateVerificationStatus(String email, boolean isVerified) {
+        try {
+            logger.info("Updating verification status for user with email: {}", email);
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new UserNotFoundException("User with email " + email + " not found"));
+
+            user.setIsVerified(isVerified);
+            User updatedUser = userRepository.save(user);
+            return modelMapper.map(updatedUser, UserDTO.class);
+        } catch (Exception e) {
+            logger.error("Failed to update verification status for email: {}", email, e);
+            throw new RuntimeException("Failed to update verification status for email: " + email);
         }
     }
 

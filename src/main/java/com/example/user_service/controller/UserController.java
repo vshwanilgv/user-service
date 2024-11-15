@@ -5,6 +5,7 @@ import com.example.user_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.http.HttpStatus;
 import java.util.List;
 
@@ -33,11 +34,19 @@ public class UserController extends AbstractController {
         return createdResponse(createdUser);
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         UserDTO updatedUser = userService.updateUser(id, userDTO);
         return successResponse(updatedUser,HttpStatus.OK);
     }
+
+    @PutMapping("/verify")
+    public ResponseEntity<UserDTO> updateVerificationStatus(@RequestParam String email) {
+        UserDTO updatedUser = userService.updateVerificationStatus(email, true); // setting to true, for example
+        return successResponse(updatedUser, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {

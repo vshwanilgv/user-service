@@ -10,37 +10,34 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Table(name = "systemuser")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
-    private String username;
-
-    private String password;
-
+    private String cognitoId;
     private String email;
-
+    private boolean isVerified;
     private String role;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
-    public void setUserName(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCognitoId(String cognitoId) {
+        this.cognitoId = cognitoId;
     }
     public void setEmail(String email) {
-        this.email = email;
+        this.email= email;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
+
+    public void setIsVerified(boolean isVerified){ this.isVerified = isVerified;}
+
+
 
 }
